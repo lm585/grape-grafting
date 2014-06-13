@@ -1,1 +1,4 @@
 melon server, grape_graft directory
+
+1. nohup ./syspipeline.2.pl  -u T -t 6  -n 4 -o 1 -e 2    fq-list-8  grape_genome > out-syspipeline-fq-list-8 2>&1 & 
+### 101-bp read

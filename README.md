@@ -1,3 +1,5 @@
 grape-grafting
 ==============
-hh
+RNA-seq genotyping
+DNA-seq genotyping
+

@@ -1,3 +1,7 @@
+The new master table can be found on melon server:
+/home/linyong/grape_graft/dir-genotype-1col/6DNA-29RNA.cov1.table
+The six DNA genotypes are same as previous. The genotypes for RNA-seq are changed as coverage is now set at 1.
+
 melon server
 /home/linyong/grape_graft/dir-bams-to-Gan-Yuan/script-init-transites-readSNP-P3
 

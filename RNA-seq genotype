@@ -1,8 +1,0 @@
-melon server, grape_graft directory
-
-1. nohup ./syspipeline.2.pl  -u T -t 6  -n 4 -o 1 -e 2    fq-list-8  grape_genome > out-syspipeline-fq-list-8 2>&1 & 
-### 101-bp read
-merge bam files for the same sample
-2. samtools mpileup -Q 0 -d 1000000 -f grape_genome n4.o1.e2.2122_4423_6440_N_Scion813_I-23S_CACCGG_R1.uniq.nonRed.sorted.bam
- > 23S.pileup
-3. reSeqPrintSample.indel.fast.strAssign.RNAseq grape_genome 23S.snp.c2.RNAseq 23S.pileup 23S.c2 2 2 -0.2

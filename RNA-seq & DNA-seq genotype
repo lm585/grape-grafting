@@ -15,7 +15,10 @@ merge bam files for the same sample
 DNA genotyping
 
 ./syspipeline.2.pl -u T -t 55 -n 6 -o 2 -e 2 fq-list-DNA-riesling grape_genome  # 151-bp reads
-
+#### genotype with parenthesis  A(19)G(1)
 reSeqPrintSample.indel.fast.strAssign.DNAseq.1    grape_genome DNA-C3309.genotype.1col  DNA-C3309.pile DNA-C3309 1 1 -0.3
+### genotype , no parenthesis,
+reSeqPrintSample.indel.fast.strAssign     ./grape_genome    DNA-riesling.1col.strAssign     DNA-riesling.pile  
+                                          DNA-riesling  1 1 0.3
 
 

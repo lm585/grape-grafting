@@ -24,7 +24,7 @@ echo "$rna read length"
 samtools view $bamfile   | head -10000 | cut -f 6 | sort | uniq -c | sort -n | tail
 samtools view $bamfile   | awk 'BEGIN {FS = "\t"} {print ">" $1 "\n" $10}' > $rna.fa
 cut -f 1-2 $initList | awk 'NR > 1 {print $1 "\t" $2-99 "\t" $2+99}' > $rna.seg.list
-paste ./temp-ref-3col  DNA-$dnadiff.geno.1colum   > temp-ref-3col-$dnadiff-1col
+paste ./temp-ref-3col  DNA-$dnadiff.geno.1colum   > temp-ref-3col-$dnadiff-1col ### geno.1colum be genotype without parenthesis
 ### 40% of melon memory; 15 min
 reSeqPrintSamp.segm.fa.heterozyg  temp-ref-3col-$dnadiff-1col  $rna.seg.list  $dnadiff.seg.fa
 bowtie-build $dnadiff.seg.fa  $dnadiff.seg

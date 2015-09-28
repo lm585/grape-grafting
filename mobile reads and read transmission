@@ -88,6 +88,10 @@ do
   }' one-read.pileup >> $rna.mobile.read
 done
 ###  40% of melon memory;
+# (apple grafting data) EE1RtRNA.mobile.read.2genotypes 
+# readID  chr     pos     DNA-E7-DNA-comb RNA-EE1RtRNA(E7)    DNA-Emp-DNA-comb
+# >HWI-D00656:103:C6JBCANXX:7:1215:19027:70309    chr10   37030958        T       C       C
+
 reSeqPrintSamp.getGenotype.atPos    temp-ref-3col-$dnadiff-1col  $rna.mobile.read  $rna.mobile.read.2genotypes
 
 rm  $rna.fa $rna.seg.list temp-ref-3col-$dnadiff-1col $dnadiff.seg.fa $dnadiff.seg.*  temp-ref-3col-$dnasame-1col $dnasame.genome.fa $dnasame.genome.fa.*

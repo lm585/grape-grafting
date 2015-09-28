@@ -81,6 +81,8 @@ do
   bwa samse -f  one-read.sam   $dnasame.genome.fa   one-read.sai one-read.fa
   samtools view -b -S -o one-read.bam one-read.sam
   samtools mpileup  -Q 0 -d 1000000 -f   $dnasame.genome.fa   one-read.bam > one-read.pileup
+  ## pileup file
+  ## chr5    32247773        C       1       t       ~ 
   awk 'BEGIN {FS = "\t"} $3 ~ /^[ACGTacgt]$/ && $5 ~ /^[ACGTacgt]$/ {
   print "'$kk'" "\t" $1 "\t"   $2  "\t" $3 "\t"  $5
   }' one-read.pileup >> $rna.mobile.read

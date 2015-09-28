@@ -26,11 +26,20 @@ samtools view $bamfile   | awk 'BEGIN {FS = "\t"} {print ">" $1 "\n" $10}' > $rn
 cut -f 1-2 $initList | awk 'NR > 1 {print $1 "\t" $2-99 "\t" $2+99}' > $rna.seg.list
 paste ./temp-ref-3col  DNA-$dnadiff.geno.1colum   > temp-ref-3col-$dnadiff-1col ### geno.1colum be genotype without parenthesis
 ### 40% of melon memory; 15 min
+## >chr11_8495635_8495835_0
+## TGTCTCAACTCACAAAAGGAGGGGCTGCTCTCAAACTATGTAGGACTTGTGGTAAGAAGGGTGATCACTGGACTTCACATTGCCCGTATAAGGATCTCGCCCCACCAAATGAAGGATTTAGTGATAAACCTCCTACATCAGAAGTAGTACATGGAACTCCTAGCACAGGTAAGTATGTTCCTCCAGTCCAGAGAGGAGGTG
+## >chr11_8495635_8495835_1
+## TGTCTCAACTCACAAAAGGAGGGGCTGCTCTCAAACTATGTAGGACTTGTGGTAAGAAGGGTGATCACTGGACTTCACATTGCCCGTATAAGGATCTCGCCCCACCAAATGAAGGATTTAGTGATAAACCTCCTACATCAGAAGTAGTACCTGGAACTCCTAGCACAGGTAAGTATGTTCCTCCAGTCCAGAGAGGAGGTG
+##>chr11_8495635_8495835_2
+##>chr11_8495635_8495835_3
+
 reSeqPrintSamp.segm.fa.heterozyg  temp-ref-3col-$dnadiff-1col  $rna.seg.list  $dnadiff.seg.fa
 bowtie-build $dnadiff.seg.fa  $dnadiff.seg
 ### # reads with at least one reported alignment: 3295 (0.05%)
 bowtie   -v 0   -k 1  $dnadiff.seg    --un temp-um-map-reads    --al  $rna.perf.reads.fa   -f $rna.fa  temp.sam
 rm temp-um-map-reads   temp.sam
+# report up to 1000 alignments
+# because chr1 1023; chr1 1033    two neighboring diagnostic SNPs
 bowtie   -v 0   -k 1000  $dnadiff.seg    --un temp-um-map-reads    --al  temp-map-reads   -q   $rna.raw.fq  temp.$rna.sam
 bowtie   -v 0   -k 1000  $dnadiff.seg    --un temp-um-map-reads    --al  temp-map-reads   -q   $rnadiff.raw.fq  temp.$rnadiff.sam
 rm temp-um-map-reads    temp-map-reads
@@ -45,6 +54,8 @@ do
    e=`echo "$kk" | cut -f 3`
    c=`echo "$kk" | cut -f 1`
    echo -n "$c  $m      " >>  $rna.transmit.read.raw.count
+   ## chr start end
+   ## >chr11_8495635_8495835_15
    res1=`grep " $c\_$s\_$e\_[0-9]*      " temp.$rnadiff.sam | cut -f 1 | sort | uniq | wc -l`
    res2=`grep " $c\_$s\_$e\_[0-9]*      " temp.$rna.sam  | cut -f 1 | sort | uniq | wc -l`
    echo "$res1  $res2" >>  $rna.transmit.read.raw.count
@@ -52,6 +63,8 @@ done
 
 paste ./temp-ref-3col  DNA-$dnasame.geno.1colum   > temp-ref-3col-$dnasame-1col
 ### 40% of melon memory; 20 min
+## >chr1
+## whole chromosome sequence in 1 line
 reSeqPrintSamp.genome.fa.noindel  temp-ref-3col-$dnasame-1col $dnasame.genome.fa
 bwa index $dnasame.genome.fa
 
